@@ -1,0 +1,75 @@
+running TCP server:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python server-tcp.py 8591
+The server is ready to receive
+
+running tcp client:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-tcp.py 127.0.0.1:8591 user1 pass1 
+welcome to our service
+
+running tcp client in debug mode:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-tcp.py 127.0.0.1:8591 user1 pass1 -d
+connecting to server
+Sending authentication request to server 127.0.0.1:8591
+Sending username <user1> and hash <42cc9b5333624ac64f5f8855646d2e4c> to server
+welcome to our service
+closing the connection
+
+running tcp client using wrong user name:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-tcp.py 127.0.0.1:8591 userwrong pass1
+User authorization failed: invalid username
+
+running tcp client using wrong password:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-tcp.py 127.0.0.1:8591 user1 passwrong
+User authorization failed: wrong password
+
+running tcp client without server running:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-tcp.py 127.0.0.1:8591 user1 pass1
+Traceback (most recent call last):
+  File "letmein-tcp.py", line 99, in <module>
+    main(sys.argv)
+  File "letmein-tcp.py", line 62, in main
+    clientSocket.connect((serverName,serverPort))
+  File "/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 61] Connection refused
+
+running UDP server:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python server-udp.py 8591
+The server is ready to receive
+
+running UDP client:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-udp.py 127.0.0.1:8591 user1 pass1
+welcome to our service
+
+running UDP client in debug mode:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-udp.py 127.0.0.1:8591 user1 pass1 -d
+connecting to server
+Sending authentication request to server 127.0.0.1:8591
+getting the random 64 bit string from server
+Sending username <user1> and hash <c844715411c813b6df23fe592bb99441> to server
+getting login information from server
+welcome to our service
+closing the connection
+
+running UDP client with wrong username:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-udp.py 127.0.0.1:8591 userwrong pass1
+User authorization failed: invalid username
+
+running UDP client with wrong password:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-udp.py 127.0.0.1:8591 user1 passwrong
+User authorization failed: wrong password
+
+running UDP client without server running:
+lawn-143-215-113-137:cs3251pj1 chongwenguo$ python letmein-udp.py 127.0.0.1:8591 user1 pass1
+message may get lost, try resending Authentication request. Time:2s
+message may get lost, try resending Authentication request. Time:4s
+message may get lost, try resending Authentication request. Time:6s
+message may get lost, try resending Authentication request. Time:8s
+message may get lost, try resending Authentication request. Time:10s
+message may get lost, try resending Authentication request. Time:12s
+message may get lost, try resending Authentication request. Time:14s
+message may get lost, try resending Authentication request. Time:16s
+message may get lost, try resending Authentication request. Time:18s
+do not receive respond in 20 seconds, please try again
+
+
